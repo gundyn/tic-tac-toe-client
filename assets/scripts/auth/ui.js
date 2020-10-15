@@ -16,6 +16,7 @@ const onSignInSuccess = (response) => {
   store.user = response.user
   $('#change-password-form').show()
   $('#sign-out-form').show()
+  $('#start-new-game-form').show()
   $('#sign-up-form').hide()
   $('#sign-in-form').hide()
 }
@@ -37,12 +38,23 @@ const onSignOutSuccess = () => {
 
   $('#change-password-form').hide()
   $('#sign-out-form').hide()
+  $('#start-new-game-form').hide()
   $('#sign-up-form').show()
   $('#sign-in-form').show()
 }
 
 const onSignOutFailure = () => {
   $('#message').text('Sign out failure, please try again!')
+}
+
+const onNewGameStartSucces = (response) => {
+  $('#message').text('New game started, good luck have fun!')
+
+  $('#change-password-form').hide()
+}
+
+const onNewGameStartFailure = () => {
+  $('#message').text('Failed to start a new game, please try again!')
 }
 
 module.exports = {
@@ -53,5 +65,7 @@ module.exports = {
   onChangePasswordSucces,
   onChangePasswordFailure,
   onSignOutSuccess,
-  onSignOutFailure
+  onSignOutFailure,
+  onNewGameStartSucces,
+  onNewGameStartFailure
 }
