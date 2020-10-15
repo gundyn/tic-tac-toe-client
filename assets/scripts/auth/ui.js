@@ -11,7 +11,7 @@ const onSignUpFailure = () => {
 }
 
 const onSignInSuccess = (response) => {
-  $('#message').text('Sign in succeful! ' + response.user.token)
+  $('#message').text('Sign in succeful! ' + response.user.email)
 
   store.user = response.user
   $('#change-password-form').show()
@@ -48,9 +48,13 @@ const onSignOutFailure = () => {
 }
 
 const onNewGameStartSucces = (response) => {
+  console.log('this is the response in new game success', response)
   $('#message').text('New game started, good luck have fun!')
 
   $('#change-password-form').hide()
+  $('#game-board').show()
+  store.player = 'x'
+  console.log(store)
 }
 
 const onNewGameStartFailure = () => {

@@ -2,6 +2,7 @@
 const getFormFields = require('./../../../lib/get-form-fields')
 const ui = require('./ui')
 const api = require('./api')
+const store = require('./../store')
 
 const onSignUp = (event) => {
   event.preventDefault()
@@ -59,10 +60,18 @@ const onNewGameStart = (event) => {
     .catch(ui.onNewGameStartFailure)
 }
 
+const onSquareClick = (event) => {
+  const clickedCell = event.target
+  const cellIndex = $(clickedCell).attr('data-cell-index')
+  console.log('game board event', cellIndex)
+  console.log('current player', store.player)
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
   onSignOut,
-  onNewGameStart
+  onNewGameStart,
+  onSquareClick
 }

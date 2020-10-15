@@ -16,4 +16,6 @@ $(() => {
   $('#change-password-form').hide()
   $('#sign-out-form').hide()
   $('#start-new-game-form').hide()
+  $('#game-board').hide()
+  $('.game-square').on('click', events.onSquareClick)
 })
