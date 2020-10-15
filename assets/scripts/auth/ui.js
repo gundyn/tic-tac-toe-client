@@ -35,7 +35,7 @@ const onChangePasswordFailure = () => {
 const onSignOutSuccess = () => {
   $('#message').text('Sign out successful')
 
-  $('#change-password-forum').hide()
+  $('#change-password-form').hide()
   $('#sign-out-form').hide()
   $('#sign-up-form').show()
   $('#sign-in-form').show()
