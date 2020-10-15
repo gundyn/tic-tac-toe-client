@@ -14,6 +14,7 @@
     <body>
       <h1>Tic-Tac-Toe</h1>
       <p id="message"></p>
+
         <section>
           <form id="sign-up-form">
             <fieldset>
@@ -29,7 +30,23 @@
               <input id="sign-up-password_confirmation" type="password" name="credentials[password_confirmation]" placeholder="confirm password">
 
               <input type="submit" value="Sign-up!">
+
             </fieldset>
+          </form>
+        </section>
+
+        <section>
+          <form id="sign-in-form">
+            <legend>Sign in!</legend>
+
+            <label for="sign-in-email">Email:</label>
+            <input id="sign-in-email" type="email" name="credentials[email]" placeholder="example@email.com">
+
+            <label for="sign-in-password">Password:</label>
+            <input id="sign-in-password" type="password" name="credentials[password]" placeholder="password">
+
+            <input type="submit" value="Sign in!">
+
           </form>
         </section>
     </body>
