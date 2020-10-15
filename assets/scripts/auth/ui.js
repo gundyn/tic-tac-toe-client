@@ -14,6 +14,10 @@ const onSignInSuccess = (response) => {
   $('#message').text('Sign in succeful! ' + response.user.token)
 
   store.user = response.user
+  $('#change-password-form').show()
+  $('#sign-out-form').show()
+  $('#sign-up-form').hide()
+  $('#sign-in-form').hide()
 }
 
 const onSignInFailure = () => {
@@ -30,6 +34,11 @@ const onChangePasswordFailure = () => {
 
 const onSignOutSuccess = () => {
   $('#message').text('Sign out successful')
+
+  $('#change-password-forum').hide()
+  $('#sign-out-form').hide()
+  $('#sign-up-form').show()
+  $('#sign-in-form').show()
 }
 
 const onSignOutFailure = () => {
