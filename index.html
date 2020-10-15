@@ -37,17 +37,48 @@
 
         <section>
           <form id="sign-in-form">
-            <legend>Sign in!</legend>
+            <fieldset>
+              <legend>Sign in!</legend>
 
-            <label for="sign-in-email">Email:</label>
-            <input id="sign-in-email" type="email" name="credentials[email]" placeholder="example@email.com">
+              <label for="sign-in-email">Email:</label>
+              <input id="sign-in-email" type="email" name="credentials[email]" placeholder="example@email.com">
 
-            <label for="sign-in-password">Password:</label>
-            <input id="sign-in-password" type="password" name="credentials[password]" placeholder="password">
+              <label for="sign-in-password">Password:</label>
+              <input id="sign-in-password" type="password" name="credentials[password]" placeholder="password">
 
-            <input type="submit" value="Sign in!">
+              <input type="submit" value="Sign in!">
 
+          </fieldset>
           </form>
         </section>
+
+        <section>
+          <form id="change-password-form">
+            <fieldset>
+              <legend>Change password!</legend>
+
+              <label for="old-password">Old passwaord:</label>
+              <input id="old-password" type="password" name="passwords[old]" placeholder="old password">
+
+              <label for="new-password">New password</label>
+              <input id="new-password" type="password" name="passwords[new]" placeholder="new password">
+
+              <input type="submit" value="Change password">
+
+            </fieldset>
+          </form>
+        </section>
+
+        <section>
+          <form id="sign-out-form">
+            <fieldset>
+              <legend>Sign Out!</legend>
+
+              <input type="submit" value="Sign out!">
+
+            </fieldset>
+          </form>
+        </section>
+
     </body>
 </html>
