@@ -41,6 +41,7 @@ const onSignOutSuccess = () => {
   $('#start-new-game-form').hide()
   $('#sign-up-form').show()
   $('#sign-in-form').show()
+  $('.game-board').hide()
 }
 
 const onSignOutFailure = () => {
@@ -55,7 +56,7 @@ const onNewGameStartSucces = (response) => {
   console.log('stored game', store.game)
 
   $('#change-password-form').hide()
-  $('#game-board').show()
+  $('.game-board').show()
 
   store.player = 'x'
   console.log('the stored player', store.player)
@@ -66,9 +67,7 @@ const onNewGameStartFailure = () => {
 }
 
 const onSquareClickSuccess = (response) => {
-  $('#message').text('it is working!')
-  store.game = response.game
-  $('#gamesquare').text('x')
+  $('#message').text('Nice move!')
 }
 
 const onSquareClickFailure = () => {
