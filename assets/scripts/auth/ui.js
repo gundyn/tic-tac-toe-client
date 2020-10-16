@@ -49,17 +49,14 @@ const onSignOutFailure = () => {
 }
 
 const onNewGameStartSucces = (response) => {
-  console.log('new game start success', response)
   $('#message').text('New game started, good luck have fun!')
 
   store.game = response.game
-  console.log('stored game', store.game)
 
   $('#change-password-form').hide()
   $('.game-board').show()
 
   store.player = 'x'
-  console.log('the stored player', store.player)
 }
 
 const onNewGameStartFailure = () => {
@@ -68,7 +65,7 @@ const onNewGameStartFailure = () => {
 
 const onSquareClickSuccess = (response) => {
   $('#message').text('Nice move!')
-  $('.game-square').text('x')
+  $(store.event.target).text('x')
   store.player = store.player === 'x' ? 'o' : 'x'
   console.log('stored player in onSquareClickSuccess', store.player)
   store.game = response.game

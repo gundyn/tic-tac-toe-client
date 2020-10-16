@@ -76,9 +76,11 @@ const onSquareClick = (event) => {
       over: false
     }
   }
+  // console.log('onSquareClick clicked clickedCell', clickedCell)
+  // console.log('game board event', cellIndex)
+  // console.log('current player in events.js onSquareClick', store.player)
 
-  console.log('game board event', cellIndex)
-  console.log('current player', store.player)
+  store.event = event
 
   api.squareClick(data)
     .then(ui.onSquareClickSuccess)
