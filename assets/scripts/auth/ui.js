@@ -42,6 +42,7 @@ const onSignOutSuccess = () => {
   $('#sign-up-form').show()
   $('#sign-in-form').show()
   $('.game-board').hide()
+  $('#sign-in-form')[0].reset()
 }
 
 const onSignOutFailure = () => {
