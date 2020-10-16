@@ -68,6 +68,9 @@ const onNewGameStartFailure = () => {
 
 const onSquareClickSuccess = (response) => {
   $('#message').text('Nice move!')
+  store.player = store.player === 'x' ? 'o' : 'x'
+  console.log('stored player in onSquareClickSuccess', store.player)
+  store.game = response.game
 }
 
 const onSquareClickFailure = () => {
