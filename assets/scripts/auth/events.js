@@ -61,10 +61,28 @@ const onNewGameStart = (event) => {
 }
 
 const onSquareClick = (event) => {
+  event.preventDefault()
+
   const clickedCell = event.target
+
   const cellIndex = $(clickedCell).attr('data-cell-index')
+
+  const data = {
+    game: {
+      cell: {
+        index: cellIndex,
+        value: store.player
+      },
+      over: false
+    }
+  }
+
   console.log('game board event', cellIndex)
   console.log('current player', store.player)
+
+  api.squareClick(data)
+    .then(ui.onSquareClickSuccess)
+    .catch(ui.onSquareClickFailure)
 }
 
 module.exports = {

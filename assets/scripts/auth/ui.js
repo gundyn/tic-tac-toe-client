@@ -48,17 +48,31 @@ const onSignOutFailure = () => {
 }
 
 const onNewGameStartSucces = (response) => {
-  console.log('this is the response in new game success', response)
+  console.log('new game start success', response)
   $('#message').text('New game started, good luck have fun!')
+
+  store.game = response.game
+  console.log('stored game', store.game)
 
   $('#change-password-form').hide()
   $('#game-board').show()
+
   store.player = 'x'
-  console.log(store)
+  console.log('the stored player', store.player)
 }
 
 const onNewGameStartFailure = () => {
   $('#message').text('Failed to start a new game, please try again!')
+}
+
+const onSquareClickSuccess = (response) => {
+  $('#message').text('it is working!')
+  store.game = response.game
+  $('#gamesquare').text('x')
+}
+
+const onSquareClickFailure = () => {
+  $('#message').text('Invalid move, try another!')
 }
 
 module.exports = {
@@ -71,5 +85,7 @@ module.exports = {
   onSignOutSuccess,
   onSignOutFailure,
   onNewGameStartSucces,
-  onNewGameStartFailure
+  onNewGameStartFailure,
+  onSquareClickSuccess,
+  onSquareClickFailure
 }
