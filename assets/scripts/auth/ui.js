@@ -69,6 +69,12 @@ const onSquareClickSuccess = (response) => {
   // need a nested function that changes the player on each click after the 'x' or 'o' has appeared on the game board
   // need a way to switch between printing an 'x' or 'o'
   // need a way to see who wins and if the game is over
+  function gameLogic () {
+    console.log('gameLogic funtion is working!')
+  }
+
+  gameLogic()
+
   $(store.event.target).text('x')
   store.player = store.player === 'x' ? 'o' : 'x'
   console.log('stored player in onSquareClickSuccess', store.player)
