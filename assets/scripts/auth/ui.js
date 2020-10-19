@@ -58,7 +58,6 @@ const onNewGameStartSucces = (response) => {
   $('.game-board').show()
 
   store.player = 'x'
-  console.log('new game start player is', store.player)
 }
 
 const onNewGameStartFailure = () => {
@@ -70,34 +69,35 @@ const onSquareClickSuccess = (response) => {
 
   gameLogic()
 
-  function changePlayer (player) {
+  function changePlayer () {
     if (store.player === 'x') {
       $(store.event.target).text('x')
     } else if (store.player === 'o') {
       $(store.event.target).text('o')
     }
+    store.player = store.player === 'x' ? 'o' : 'x'
   }
 
   function gameLogic () {
-    console.log('gameLogic function is working!')
     if ($(store.event.target).text() === '') {
       changePlayer()
-      console.log('empty square click')
       $('#message').text('Great move!')
     } else if ($(store.event.target).text() === 'x') {
-      console.log('square has an x')
       $('#message').text('Invalid move, try again!')
     } else if ($(store.event.target).text() === 'o') {
-      $(store.event.target).text('o')
-      console.log('square has a o')
       $('#message').text('Invalid move, try again!')
     }
+    store.game = response.game
+    determineWinner()
   }
 
-  store.player = store.player === 'x' ? 'o' : 'x'
-
-  console.log('stored player in onSquareClickSuccess', store.player)
-  store.game = response.game
+  function determineWinner () {
+    console.log('game board', store.event.target)
+    console.log('the array of cells', store.game.cells)
+    console.log('the zero position in the array', store.game.cells[0])
+    console.log('the 1 position in the array', store.game.cells[1])
+    console.log('the 2 postion in the array', store.game.cells[2])
+  }
 }
 
 const onSquareClickFailure = () => {
