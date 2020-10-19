@@ -58,6 +58,7 @@ const onNewGameStartSucces = (response) => {
   $('.game-board').show()
 
   store.player = 'x'
+  console.log('new game start player is', store.player)
 }
 
 const onNewGameStartFailure = () => {
@@ -66,17 +67,35 @@ const onNewGameStartFailure = () => {
 
 const onSquareClickSuccess = (response) => {
   $('#message').text('Nice move!')
-  // need a nested function that changes the player on each click after the 'x' or 'o' has appeared on the game board
-  // need a way to switch between printing an 'x' or 'o'
-  // need a way to see who wins and if the game is over
-  function gameLogic () {
-    console.log('gameLogic funtion is working!')
-  }
 
   gameLogic()
 
-  $(store.event.target).text('x')
+  function changePlayer (player) {
+    if (store.player === 'x') {
+      $(store.event.target).text('x')
+    } else if (store.player === 'o') {
+      $(store.event.target).text('o')
+    }
+  }
+
+  function gameLogic () {
+    console.log('gameLogic function is working!')
+    if ($(store.event.target).text() === '') {
+      changePlayer()
+      console.log('empty square click')
+      $('#message').text('Great move!')
+    } else if ($(store.event.target).text() === 'x') {
+      console.log('square has an x')
+      $('#message').text('Invalid move, try again!')
+    } else if ($(store.event.target).text() === 'o') {
+      $(store.event.target).text('o')
+      console.log('square has a o')
+      $('#message').text('Invalid move, try again!')
+    }
+  }
+
   store.player = store.player === 'x' ? 'o' : 'x'
+
   console.log('stored player in onSquareClickSuccess', store.player)
   store.game = response.game
 }
