@@ -4,6 +4,7 @@ const store = require('./../store')
 
 const onSignUpSuccess = (response) => {
   $('#message').text('Thanks for signing up for Tic-Tac-Toe! ' + response.user.email)
+  $('#sign-up-form')[0].reset()
 }
 
 const onSignUpFailure = () => {
