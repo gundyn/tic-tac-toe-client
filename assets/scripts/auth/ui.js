@@ -9,6 +9,7 @@ const onSignUpSuccess = (response) => {
 
 const onSignUpFailure = () => {
   $('#message').text('Sign up failed, plaese try again!')
+  $('#sign-up-form')[0].reset()
 }
 
 const onSignInSuccess = (response) => {
@@ -61,7 +62,7 @@ const onNewGameStartSucces = (response) => {
   $('#change-password-form').hide()
   $('.game-board').show()
   $('#start-new-game-form').hide()
-
+  $('.game-square').text('')
   store.player = 'x'
   console.log('cells', store.game.cells)
 }
