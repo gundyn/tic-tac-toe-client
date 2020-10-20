@@ -62,11 +62,23 @@ const squareClick = (data) => {
   })
 }
 
+const gamesPlayed = (data) => {
+  return $.ajax({
+    url: config.apiUrl + '/games/',
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    data: data
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   changePassword,
   signOut,
   newGame,
-  squareClick
+  squareClick,
+  gamesPlayed
 }

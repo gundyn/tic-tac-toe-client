@@ -19,6 +19,7 @@ const onSignInSuccess = (response) => {
   $('#start-new-game-form').show()
   $('#sign-up-form').hide()
   $('#sign-in-form').hide()
+  $('#games-played').show()
 }
 
 const onSignInFailure = () => {
@@ -42,6 +43,7 @@ const onSignOutSuccess = () => {
   $('#sign-up-form').show()
   $('#sign-in-form').show()
   $('.game-board').hide()
+  $('#games-played').hide()
   $('#sign-in-form')[0].reset()
 }
 
@@ -56,6 +58,7 @@ const onNewGameStartSucces = (response) => {
 
   $('#change-password-form').hide()
   $('.game-board').show()
+  $('#start-new-game-form').hide()
 
   store.player = 'x'
 }
@@ -95,34 +98,70 @@ const onSquareClickSuccess = (response) => {
     console.log('game board', store.event.target)
     console.log('the array of cells', store.game.cells)
 
-    if (store.game.cells[0] === 'x' && store.game.cells[1] === 'x' && store.game.cells[2] === 'x') {
+    let cells = store.game.cells
+
+    if (cells[0] === 'x' && cells[1] === 'x' && cells[2] === 'x') {
       $('#message').text('Top row wins!')
-    } else if (store.game.cells[3] === 'x' && store.game.cells[4] === 'x' && store.game.cells[5] === 'x') {
+      $('.game-board').hide()
+      $('#start-new-game-form').show()
+    } else if (cells[3] === 'x' && cells[4] === 'x' && cells[5] === 'x') {
       $('#message').text('Middle row wins!')
-    } else if (store.game.cells[6] === 'x' && store.game.cells[7] === 'x' && store.game.cells[8] === 'x') {
+      $('.game-board').hide()
+    } else if (cells[6] === 'x' && cells[7] === 'x' && cells[8] === 'x') {
       $('#message').text('Bottom row wins!')
-    } else if (store.game.cells[0] === 'x' && store.game.cells[4] === 'x' && store.game.cells[8] === 'x') {
+      $('.game-board').hide()
+    } else if (cells[0] === 'x' && cells[4] === 'x' && cells[8] === 'x') {
       $('#message').text('Diagonal row wins!')
-    } else if (store.game.cells[2] === 'x' && store.game.cells[4] === 'x' && store.game.cells[6] === 'x') {
+      $('.game-board').hide()
+    } else if (cells[2] === 'x' && cells[4] === 'x' && cells[6] === 'x') {
       $('#message').text('Diagonal row wins!')
-    } else if (store.game.cells[0] === 'o' && store.game.cells[1] === 'o' && store.game.cells[2] === 'o') {
+      $('.game-board').hide()
+    } else if (cells[0] === 'x' && cells[3] === 'x' && cells[6] === 'x') {
+      $('#message').text('Left column wins!')
+      $('.game-board').hide()
+    } else if (cells[1] === 'x' && cells[4] === 'x' && cells[7] === 'x') {
+      $('#message').text('Middle column wins!')
+      $('.game-board').hide()
+    } else if (cells[2] === 'x' && cells[5] === 'x' && cells[8] === 'x') {
+      $('#message').text('Right column wins!')
+      $('.game-board').hide()
+    } else if (cells[0] === 'o' && cells[1] === 'o' && cells[2] === 'o') {
       $('#message').text('Top row wins!')
-    } else if (store.game.cells[3] === 'o' && store.game.cells[4] === 'o' && store.game.cells[5] === 'o') {
+      $('.game-board').hide()
+    } else if (cells[3] === 'o' && cells[4] === 'o' && cells[5] === 'o') {
       $('#message').text('Middle row wins!')
-    } else if (store.game.cells[6] === 'o' && store.game.cells[7] === 'o' && store.game.cells[8] === 'o') {
+      $('.game-board').hide()
+    } else if (cells[6] === 'o' && cells[7] === 'o' && cells[8] === 'o') {
       $('#message').text('Bottom row wins!')
-    } else if (store.game.cells[0] === 'o' && store.game.cells[4] === 'o' && store.game.cells[8] === 'o') {
+      $('.game-board').hide()
+    } else if (cells[0] === 'o' && cells[4] === 'o' && cells[8] === 'o') {
       $('#message').text('Diagonal row wins!')
-    } else if (store.game.cells[2] === 'o' && store.game.cells[4] === 'o' && store.game.cells[6] === 'o') {
+      $('.game-board').hide()
+    } else if (cells[2] === 'o' && cells[4] === 'o' && cells[6] === 'o') {
       $('#message').text('Diagonal row wins!')
-    } else if (store.game.cells[0] !== '' && store.game.cells[1] !== '' && store.game.cells[2] !== '' && store.game.cells[3] !== '' && store.game.cells[4] !== '' && store.game.cells[5] !== '' && store.game.cells[6] !== '' && store.game.cells[7] !== '' && store.game.cells[8] !== '') {
+      $('.game-board').hide()
+    } else if (cells[0] === 'o' && cells[3] === 'o' && cells[6] === 'o') {
+      $('#message').text('Left column wins!')
+      $('.game-board').hide()
+    } else if (cells[1] === 'o' && cells[4] === 'o' && cells[7] === 'o') {
+      $('#message').text('Middle column wins!')
+      $('.game-board').hide()
+    } else if (cells[2] === 'o' && cells[5] === 'o' && cells[8] === 'o') {
+      $('#message').text('Right column wins!')
+      $('.game-board').hide()
+    } else if (cells[0] !== '' && cells[1] !== '' && cells[2] !== '' && cells[3] !== '' && cells[4] !== '' && cells[5] !== '' && cells[6] !== '' && cells[7] !== '' && cells[8] !== '') {
       $('#message').text('Game is a tie!')
+      $('.game-board').hide()
     }
   }
 }
 
 const onSquareClickFailure = () => {
   $('#message').text('Invalid move, try another!')
+}
+
+const onGamesPlayedSuccess = (response) => {
+  $('#message').text('Games played! ' + response.games.length)
 }
 
 module.exports = {
@@ -137,5 +176,6 @@ module.exports = {
   onNewGameStartSucces,
   onNewGameStartFailure,
   onSquareClickSuccess,
-  onSquareClickFailure
+  onSquareClickFailure,
+  onGamesPlayedSuccess
 }

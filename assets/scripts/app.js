@@ -18,4 +18,6 @@ $(() => {
   $('#start-new-game-form').hide()
   $('.game-board').hide()
   $('.game-square').on('click', events.onSquareClick)
+  $('#games-played').on('click', events.onGamesPlayed)
+  $('#games-played').hide()
 })

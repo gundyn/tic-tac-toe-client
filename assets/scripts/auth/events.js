@@ -84,11 +84,31 @@ const onSquareClick = (event) => {
     .catch(ui.onSquareClickFailure)
 }
 
+const onGamesPlayed = (event) => {
+  event.preventDefault()
+
+  const data = {
+    games: [
+      {
+        cells: ['', '', '', '', '', '', '', '', ''],
+        over: false,
+        _id: store.user._id,
+        owner: store.user.token
+      }
+    ]
+  }
+
+  api.gamesPlayed(data)
+    .then(ui.onGamesPlayedSuccess)
+    .catch(ui.onNewGamePlayedFailure)
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
   onSignOut,
   onNewGameStart,
-  onSquareClick
+  onSquareClick,
+  onGamesPlayed
 }
