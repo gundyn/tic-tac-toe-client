@@ -59,8 +59,8 @@ const onNewGameStartSucces = (response) => {
   $('#change-password-form').hide()
   $('.game-board').show()
   $('#start-new-game-form').hide()
-
   store.player = 'x'
+  console.log('cells', store.game.cells)
 }
 
 const onNewGameStartFailure = () => {
@@ -69,7 +69,7 @@ const onNewGameStartFailure = () => {
 
 const onSquareClickSuccess = (response) => {
   $('#message').text('Nice move!')
-
+  $('#start-new-game-form').show()
   gameLogic()
 
   function changePlayer () {
@@ -103,7 +103,6 @@ const onSquareClickSuccess = (response) => {
     if (cells[0] === 'x' && cells[1] === 'x' && cells[2] === 'x') {
       $('#message').text('Top row wins!')
       $('.game-board').hide()
-      $('#start-new-game-form').show()
     } else if (cells[3] === 'x' && cells[4] === 'x' && cells[5] === 'x') {
       $('#message').text('Middle row wins!')
       $('.game-board').hide()
