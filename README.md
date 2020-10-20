@@ -15,7 +15,7 @@ https://gundyn.github.io/tic-tac-toe-client/
 
 Planning Story
 
-When planning out how I was going to create tic-tac-toe application starting small and building on those success's was important. Mainly because this was a first attempt with recently learned technologies. My plan was to start with sign up and sign in, when those were working how I wanted then move on to other fuctions of the application. The game board and the logic to determine the winner or a tie was the largest hurtle i foresaw. After the functionality of the application was complete styleing the page would come. 
+When planning out how I was going to create tic-tac-toe application starting small and building on those success's was important. Mainly because this was a first attempt with recently learned technologies. My plan was to start with sign up and sign in, when those were working how I wanted then move on to other fuctions of the application. The game board and the logic to determine the winner or a tie was the largest hurtle i foresaw. After the functionality of the application was complete styleing the page would come.
 
 User Stories
 
@@ -39,6 +39,8 @@ scss
 jQuery
 
 Unsolved Porblems
+
+styling needs work
 
 Still need to when a user is playing the game, the user must only select available spaces on the board
 

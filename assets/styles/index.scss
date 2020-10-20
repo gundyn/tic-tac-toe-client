@@ -1,5 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
 
+body {
+  background-color: #ffce54;
+}
+h1, legend, label {
+  color: #d65352;
+}
+
+
 .container {
   height: 100vh;
 }
