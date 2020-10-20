@@ -26,6 +26,7 @@ const onSignInSuccess = (response) => {
 
 const onSignInFailure = () => {
   $('#message').text('Sign in failed, please try again!')
+  $('#sign-up-form')[0].reset()
 }
 
 const onChangePasswordSucces = (response) => {
