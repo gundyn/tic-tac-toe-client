@@ -28,6 +28,7 @@ const onSignInFailure = () => {
 
 const onChangePasswordSucces = (response) => {
   $('#message').text('Password change succeful!')
+  $('#change-password-form')[0].reset()
 }
 
 const onChangePasswordFailure = () => {
@@ -59,6 +60,7 @@ const onNewGameStartSucces = (response) => {
   $('#change-password-form').hide()
   $('.game-board').show()
   $('#start-new-game-form').hide()
+
   store.player = 'x'
   console.log('cells', store.game.cells)
 }
