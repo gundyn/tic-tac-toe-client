@@ -22,6 +22,9 @@ const onSignInSuccess = (response) => {
   $('#sign-up-form').hide()
   $('#sign-in-form').hide()
   $('#games-played').show()
+  $('#sign-in-form')[0].reset()
+  $('#sign-up-form')[0].reset()
+  $('#change-password-form')[0].reset()
 }
 
 const onSignInFailure = () => {
@@ -30,6 +33,8 @@ const onSignInFailure = () => {
 
 const onChangePasswordSucces = (response) => {
   $('#message').text('Password change succeful!')
+  $('#sign-in-form')[0].reset()
+  $('#sign-up-form')[0].reset()
   $('#change-password-form')[0].reset()
 }
 
@@ -48,6 +53,8 @@ const onSignOutSuccess = () => {
   $('.game-board').hide()
   $('#games-played').hide()
   $('#sign-in-form')[0].reset()
+  $('#sign-up-form')[0].reset()
+  $('#change-password-form')[0].reset()
 }
 
 const onSignOutFailure = () => {
@@ -64,7 +71,6 @@ const onNewGameStartSucces = (response) => {
   $('#start-new-game-form').hide()
   $('.game-square').text('')
   store.player = 'x'
-  console.log('cells', store.game.cells)
 }
 
 const onNewGameStartFailure = () => {
@@ -88,20 +94,16 @@ const onSquareClickSuccess = (response) => {
     if ($(store.event.target).text() === '') {
       changePlayer()
       $('#message').text('Great move!')
-      $(store.event.target).unbind('click')
     } else if ($(store.event.target).text() === 'x') {
-      onSquareClickFailure()
+      $('#message').text('Invalid move, try another!')
     } else if ($(store.event.target).text() === 'o') {
-      onSquareClickFailure()
+      $('#message').text('Invalid move, try another!')
     }
     store.game = response.game
     determineWinner()
   }
 
   function determineWinner () {
-    console.log('game board', store.event.target)
-    console.log('the array of cells', store.game.cells)
-
     let cells = store.game.cells
 
     if (cells[0] === 'x' && cells[1] === 'x' && cells[2] === 'x') {
