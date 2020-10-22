@@ -26,7 +26,6 @@ const onSignInSuccess = (response) => {
 
 const onSignInFailure = () => {
   $('#message').text('Sign in failed, please try again!')
-  $('#sign-up-form')[0].reset()
 }
 
 const onChangePasswordSucces = (response) => {
@@ -61,7 +60,7 @@ const onNewGameStartSucces = (response) => {
   store.game = response.game
 
   $('#change-password-form').hide()
-  $('.game-board').show()
+  $('.game-board').fadeIn()
   $('#start-new-game-form').hide()
   $('.game-square').text('')
   store.player = 'x'
@@ -73,7 +72,6 @@ const onNewGameStartFailure = () => {
 }
 
 const onSquareClickSuccess = (response) => {
-  $('#message').text('Nice move!')
   $('#start-new-game-form').show()
   gameLogic()
 
@@ -90,10 +88,11 @@ const onSquareClickSuccess = (response) => {
     if ($(store.event.target).text() === '') {
       changePlayer()
       $('#message').text('Great move!')
+      $(store.event.target).unbind('click')
     } else if ($(store.event.target).text() === 'x') {
-      $('#message').text('Invalid move, try again!')
+      onSquareClickFailure()
     } else if ($(store.event.target).text() === 'o') {
-      $('#message').text('Invalid move, try again!')
+      onSquareClickFailure()
     }
     store.game = response.game
     determineWinner()
@@ -106,52 +105,52 @@ const onSquareClickSuccess = (response) => {
     let cells = store.game.cells
 
     if (cells[0] === 'x' && cells[1] === 'x' && cells[2] === 'x') {
-      $('#message').text('Top row wins!')
+      $('#message').text('Top row X wins!')
       $('.game-board').hide()
     } else if (cells[3] === 'x' && cells[4] === 'x' && cells[5] === 'x') {
-      $('#message').text('Middle row wins!')
+      $('#message').text('Middle row X wins!')
       $('.game-board').hide()
     } else if (cells[6] === 'x' && cells[7] === 'x' && cells[8] === 'x') {
-      $('#message').text('Bottom row wins!')
+      $('#message').text('Bottom row X wins!')
       $('.game-board').hide()
     } else if (cells[0] === 'x' && cells[4] === 'x' && cells[8] === 'x') {
-      $('#message').text('Diagonal row wins!')
+      $('#message').text('Diagonal row X wins!')
       $('.game-board').hide()
     } else if (cells[2] === 'x' && cells[4] === 'x' && cells[6] === 'x') {
-      $('#message').text('Diagonal row wins!')
+      $('#message').text('Diagonal row X wins!')
       $('.game-board').hide()
     } else if (cells[0] === 'x' && cells[3] === 'x' && cells[6] === 'x') {
-      $('#message').text('Left column wins!')
+      $('#message').text('Left column X wins!')
       $('.game-board').hide()
     } else if (cells[1] === 'x' && cells[4] === 'x' && cells[7] === 'x') {
-      $('#message').text('Middle column wins!')
+      $('#message').text('Middle column X wins!')
       $('.game-board').hide()
     } else if (cells[2] === 'x' && cells[5] === 'x' && cells[8] === 'x') {
-      $('#message').text('Right column wins!')
+      $('#message').text('Right column X wins!')
       $('.game-board').hide()
     } else if (cells[0] === 'o' && cells[1] === 'o' && cells[2] === 'o') {
-      $('#message').text('Top row wins!')
+      $('#message').text('Top row O wins!')
       $('.game-board').hide()
     } else if (cells[3] === 'o' && cells[4] === 'o' && cells[5] === 'o') {
-      $('#message').text('Middle row wins!')
+      $('#message').text('Middle row O wins!')
       $('.game-board').hide()
     } else if (cells[6] === 'o' && cells[7] === 'o' && cells[8] === 'o') {
-      $('#message').text('Bottom row wins!')
+      $('#message').text('Bottom row O wins!')
       $('.game-board').hide()
     } else if (cells[0] === 'o' && cells[4] === 'o' && cells[8] === 'o') {
-      $('#message').text('Diagonal row wins!')
+      $('#message').text('Diagonal row O wins!')
       $('.game-board').hide()
     } else if (cells[2] === 'o' && cells[4] === 'o' && cells[6] === 'o') {
-      $('#message').text('Diagonal row wins!')
+      $('#message').text('Diagonal row O wins!')
       $('.game-board').hide()
     } else if (cells[0] === 'o' && cells[3] === 'o' && cells[6] === 'o') {
-      $('#message').text('Left column wins!')
+      $('#message').text('Left column O wins!')
       $('.game-board').hide()
     } else if (cells[1] === 'o' && cells[4] === 'o' && cells[7] === 'o') {
-      $('#message').text('Middle column wins!')
+      $('#message').text('Middle column O wins!')
       $('.game-board').hide()
     } else if (cells[2] === 'o' && cells[5] === 'o' && cells[8] === 'o') {
-      $('#message').text('Right column wins!')
+      $('#message').text('Right column O wins!')
       $('.game-board').hide()
     } else if (cells[0] !== '' && cells[1] !== '' && cells[2] !== '' && cells[3] !== '' && cells[4] !== '' && cells[5] !== '' && cells[6] !== '' && cells[7] !== '' && cells[8] !== '') {
       $('#message').text('Game is a tie!')
